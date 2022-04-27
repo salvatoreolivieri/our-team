@@ -17,6 +17,7 @@ Utilizzare gli input presenti nella pagina per permettere all’utente di aggiun
 
 const container = document.querySelector(".team-container");
 
+// array che contiene gli oggetti
 const teamMember = [
 
   {
@@ -59,10 +60,12 @@ const teamMember = [
 
 console.log(teamMember);
 
+//ciclo for che si ripete in automatico per ogni oggetto contenuto dentro l'array
 for (const key in teamMember) {
 
   console.log(teamMember[key].Nome);
 
+  // card dinamica da stampare in pagina con gli oggetti presenti nell'array
   const ouputTeamMember =
 
     `
@@ -75,10 +78,53 @@ for (const key in teamMember) {
         </div>
         <div class="card-text">
            <h3>${teamMember[key].Nome}</h3>
-            p>${teamMember[key].Ruolo}</p>
+            <p>${teamMember[key].Ruolo}</p>
         </div>
       </div>
   `
 
+  // stampiamo in pagina la card dinamica sopra citata
   container.innerHTML += ouputTeamMember;
+}
+
+
+
+
+// --> BONUS
+
+/* 
+  Dichiaro tutti gli elementi che ci servono:
+*/
+const nome = document.getElementById("name").value;
+const ruolo = document.getElementById("role").value;
+const img = document.getElementById("image").value;
+
+
+//Funzione che genera i nuovi membri:
+function addNewMember() {
+
+  console.log(nome);
+  console.log(ruolo);
+  console.log(img);
+
+  const newTeamMember =
+
+  `
+      <div class="team-card">
+        <div class="card-image">
+          <img
+            src="img/${img}"
+            alt="${nome}"
+          />
+        </div>
+        <div class="card-text">
+           <h3>${nome}</h3>
+            <p>${ruolo}</p>
+        </div>
+      </div>
+    
+  `;
+
+  container.innerHTML += newTeamMember;
+
 }
