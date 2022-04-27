@@ -92,39 +92,60 @@ for (const key in teamMember) {
 
 // --> BONUS
 
+const randomImgArray = [
+  "img/new-team-member-01.jpg",
+  "img/new-team-member-02.jpg",
+  "img/new-team-member-03.jpg",
+  "img/new-team-member-04.jpg",
+];
+
 /* 
   Dichiaro tutti gli elementi che ci servono:
 */
-const nome = document.getElementById("name").value;
-const ruolo = document.getElementById("role").value;
-const img = document.getElementById("image").value;
+const nomeInput = document.getElementById("name");
+const ruoloInput = document.getElementById("role");
+const imgInput = document.getElementById("image");
+
+const addButton = document.getElementById("addMemberButton");
+
+addButton.addEventListener("click", addNewMember );
 
 
 //Funzione che genera i nuovi membri:
 function addNewMember() {
 
-  console.log(nome);
-  console.log(ruolo);
-  console.log(img);
+  console.log(nomeInput);
+  console.log(ruoloInput);
+  console.log(imgInput);
 
-  const newTeamMember =
+  let newTeamMember =
 
   `
       <div class="team-card">
         <div class="card-image">
           <img
-            src="img/${img}"
-            alt="${nome}"
+            src="${randomImgArray[getRandomIndex(3, 1)]}"
+            alt="${nomeInput.value}";
           />
         </div>
         <div class="card-text">
-           <h3>${nome}</h3>
-            <p>${ruolo}</p>
+           <h3>${nomeInput.value}</h3>
+            <p>${ruoloInput.value}</p>
         </div>
       </div>
     
   `;
 
+  nomeInput.value = "";
+  ruoloInput.value = "";
+  imgInput.value = "";
+
+
+  console.log(randomImgArray[getRandomIndex(3, 1)]);
   container.innerHTML += newTeamMember;
 
+}
+
+function getRandomIndex(max, min){
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
